@@ -8,4 +8,6 @@
 扩展写在addExtension。可以参照扩展
 
 只有一个文件：D3Json.swfit
+
+一句代码：
 var user:User = D3Json.jsonToModel(json, clazz: User.self, objc: User())就可以把json数据转换成User类
