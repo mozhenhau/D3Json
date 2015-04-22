@@ -9,15 +9,36 @@
 import Foundation
 
 class D3Json{
+    class func jsonToModel<T>(dics:AnyObject?,objc:AnyObject?)->T!{
+        return jsonToModel(dics, clazz: nil, objc: objc)
+    }
+    
+    
+    class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass?)->T!{
+        return jsonToModel(dics, clazz: clazz, objc: nil)
+    }
+    
     
     //MARK: json转到model
-    class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass,objc:AnyObject)->T!{
+    private class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass?,objc:AnyObject?)->T!{
         if dics == nil{
             return nil
         }
         
-        var properties:MirrorType = reflect(objc)
-        var obj:AnyObject = clazz.alloc()  //新建对象
+        var obj:AnyObject!
+        var properties:MirrorType!
+        if objc != nil{
+            obj = objc!.classForCoder.alloc() //新建对象
+            properties = reflect(objc!)
+        }
+        else if clazz != nil{
+            obj = clazz!.alloc()
+            properties = reflect(obj)
+        }
+        else{
+            return nil
+        }
+        
         var dic:AnyObject!
         if dics is NSArray{
             dic = dics!.lastObject
@@ -78,38 +99,23 @@ class D3Json{
         else{
             return nil
         }
-        return (obj as T)
-    }
-    
-    
-    //MARK: json转到model list
-    class func jsonToModelList<T>(dics:NSArray?,clazz:AnyClass,objc:AnyObject)->Array<T>{
-        if dics == nil{
-            return []
-        }
-        
-        var clazzs:Array<T> = []
-        for(var i = 0 ;i < dics!.count;i++){
-            var dic:AnyObject = dics![i]
-            clazzs.append(jsonToModel(dic,clazz:clazz,objc:objc))
-        }
-        return clazzs
+        return (obj as! T)
     }
     
     //MARK: json转到model list,传入anyobject
-    class func jsonToModelList<T>(data:AnyObject?,clazz:AnyClass,objc:AnyObject)->Array<T>{
+    class func jsonToModelList<T>(data:AnyObject?,objc:AnyObject)->Array<T>{
         if data == nil{
             return []
         }
         
-        var clazzs:Array<T> = []
+        var objs:Array<T> = []
         if let dics = data as? NSArray{
             for(var i = 0 ;i < dics.count;i++){
                 var dic:AnyObject = dics[i]
-                clazzs.append(jsonToModel(dic,clazz:clazz,objc:objc))
+                objs.append(jsonToModel(dic,objc:objc))
             }
         }
-        return clazzs
+        return objs
     }
     
     
@@ -120,7 +126,6 @@ class D3Json{
     obj.setValue(jsonToModel(dic.objectForKey(key), clazz: User.self, objc: User()),forKey:key)
     如有自己的Job类，则把User改成Job则可
     
-    
     :param: key  属性名
     :param: type 属性的类型
     :param: obj  要赋值的对象
@@ -129,10 +134,10 @@ class D3Json{
     private class func addExtension(key:String,type:Any.Type,obj:AnyObject,dic:AnyObject){
         switch type {
         case _ as User.Type:
-            obj.setValue(jsonToModel(dic.objectForKey(key), clazz: User.self, objc: User()),forKey:key)
+            obj.setValue(jsonToModel(dic.objectForKey(key), objc: User()),forKey:key)
             
         case _ as Job.Type:
-            obj.setValue(jsonToModel(dic.objectForKey(key), clazz: Job.self, objc: Job()),forKey:key)
+            obj.setValue(jsonToModel(dic.objectForKey(key), objc: Job()),forKey:key)
             
         default:     //unknow
             println("key:\(key),unknow,sure that you hava init")

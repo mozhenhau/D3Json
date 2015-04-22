@@ -28,7 +28,7 @@ class D3JsonTests: XCTestCase {
                 "name":"swift"
             ]
         ]
-        var user:User = D3Json.jsonToModel(json, clazz: User.self, objc: User())
+        var user:User = D3Json.jsonToModel(json, objc: User())
         println(user)
     }
     
@@ -50,17 +50,19 @@ class D3JsonTests: XCTestCase {
                 ]
             ]
         ]
-        var users:Array<User> = D3Json.jsonToModelList(json2, clazz: User.self, objc: User())
+        var users:Array<User> = D3Json.jsonToModelList(json2, objc: User())
         println(users)
     }
 }
 
+@objc(Job)
 class Job:NSObject{
     var name = ""
 }
 
+@objc(User)
 class User:NSObject{
     var name = ""
     var age = 0
-    var job = Job()
+    var job:Job = Job()
 }
