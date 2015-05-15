@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		A56605BD1B05A05B00BF93DD /* D3Json.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56605B11B05A05B00BF93DD /* D3Json.framework */; };
 		A56605C41B05A05B00BF93DD /* D3JsonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56605C31B05A05B00BF93DD /* D3JsonTests.swift */; };
-		A56605CE1B05A0CF00BF93DD /* D3json.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56605CD1B05A0CF00BF93DD /* D3json.swift */; };
-		A56605CF1B05A0E900BF93DD /* D3json.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56605CD1B05A0CF00BF93DD /* D3json.swift */; };
+		A56605CE1B05A0CF00BF93DD /* D3Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56605CD1B05A0CF00BF93DD /* D3Json.swift */; };
+		A56605CF1B05A0E900BF93DD /* D3Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56605CD1B05A0CF00BF93DD /* D3Json.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +29,7 @@
 		A56605BC1B05A05B00BF93DD /* D3JsonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = D3JsonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A56605C21B05A05B00BF93DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A56605C31B05A05B00BF93DD /* D3JsonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = D3JsonTests.swift; sourceTree = "<group>"; };
-		A56605CD1B05A0CF00BF93DD /* D3json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = D3json.swift; sourceTree = "<group>"; };
+		A56605CD1B05A0CF00BF93DD /* D3Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = D3Json.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 		A56605B31B05A05B00BF93DD /* D3Json */ = {
 			isa = PBXGroup;
 			children = (
-				A56605CD1B05A0CF00BF93DD /* D3json.swift */,
+				A56605CD1B05A0CF00BF93DD /* D3Json.swift */,
 				A56605B41B05A05B00BF93DD /* Supporting Files */,
 			);
 			path = D3Json;
@@ -209,7 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A56605CE1B05A0CF00BF93DD /* D3json.swift in Sources */,
+				A56605CE1B05A0CF00BF93DD /* D3Json.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A56605CF1B05A0E900BF93DD /* D3json.swift in Sources */,
+				A56605CF1B05A0E900BF93DD /* D3Json.swift in Sources */,
 				A56605C41B05A05B00BF93DD /* D3JsonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,6 +404,7 @@
 				A56605C91B05A05B00BF93DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A56605CA1B05A05B00BF93DD /* Build configuration list for PBXNativeTarget "D3JsonTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +413,7 @@
 				A56605CC1B05A05B00BF93DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
