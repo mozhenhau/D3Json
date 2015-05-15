@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A56605B71B05A05B00BF93DD /* D3Json.h in Headers */ = {isa = PBXBuildFile; fileRef = A56605B61B05A05B00BF93DD /* D3Json.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A56605BD1B05A05B00BF93DD /* D3Json.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56605B11B05A05B00BF93DD /* D3Json.framework */; };
 		A56605C41B05A05B00BF93DD /* D3JsonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56605C31B05A05B00BF93DD /* D3JsonTests.swift */; };
+		A56605CE1B05A0CF00BF93DD /* D3json.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56605CD1B05A0CF00BF93DD /* D3json.swift */; };
+		A56605CF1B05A0E900BF93DD /* D3json.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56605CD1B05A0CF00BF93DD /* D3json.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,10 +26,10 @@
 /* Begin PBXFileReference section */
 		A56605B11B05A05B00BF93DD /* D3Json.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = D3Json.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A56605B51B05A05B00BF93DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A56605B61B05A05B00BF93DD /* D3Json.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = D3Json.h; sourceTree = "<group>"; };
 		A56605BC1B05A05B00BF93DD /* D3JsonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = D3JsonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A56605C21B05A05B00BF93DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A56605C31B05A05B00BF93DD /* D3JsonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = D3JsonTests.swift; sourceTree = "<group>"; };
+		A56605CD1B05A0CF00BF93DD /* D3json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = D3json.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +72,7 @@
 		A56605B31B05A05B00BF93DD /* D3Json */ = {
 			isa = PBXGroup;
 			children = (
-				A56605B61B05A05B00BF93DD /* D3Json.h */,
+				A56605CD1B05A0CF00BF93DD /* D3json.swift */,
 				A56605B41B05A05B00BF93DD /* Supporting Files */,
 			);
 			path = D3Json;
@@ -109,7 +110,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A56605B71B05A05B00BF93DD /* D3Json.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A56605CE1B05A0CF00BF93DD /* D3json.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A56605CF1B05A0E900BF93DD /* D3json.swift in Sources */,
 				A56605C41B05A05B00BF93DD /* D3JsonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +325,7 @@
 		A56605C81B05A05B00BF93DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -332,12 +335,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		A56605C91B05A05B00BF93DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
