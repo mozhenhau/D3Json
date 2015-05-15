@@ -5,9 +5,9 @@ Pod::Spec.new do |spec|
   spec.homepage         = 'https://github.com/mozhenhau/D3Json'
   spec.authors          = {"mozhenhau" => "493842062@qq.com"}
   spec.summary          = 'ARC and GCD Compatible D3Json Class for iOS and OS X.'
-  
-  s.ios.deployment_target = "8.0"
   spec.source           =  {:git => 'https://github.com/mozhenhau/D3Json.git', :tag => '1.0.1' }
   spec.source_files     = 'D3json/*.swift'
   spec.requires_arc     = true
+  s.osx.deployment_target = '10.9'  
+  s.ios.deployment_target = '8.0'
 end
