@@ -29,7 +29,10 @@ var user:Array<User> = D3Json.jsonToModelList(jsons, objc:User())就可以把jso
 
 You can use Cocoapods to install D3Json adding it to your Podfile:
 
-    pod 'D3Json', '~> 1.0.2'
+    platform :ios, '8.0'
+    use_frameworks!
+    
+    pod 'D3Json’, '~> 1.0.2'
 you need `import D3Json`
 
 
