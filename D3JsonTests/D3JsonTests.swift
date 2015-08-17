@@ -27,6 +27,10 @@ class D3JsonTests: XCTestCase {
             "age":1,
             "job": [
                 "name":"swift"
+            ],
+            "arr":[
+                ["name":"swift"],
+                ["name":"objc"]
             ]
         ]
         var user:User = D3Json.jsonToModel(json, objc: User())
@@ -66,4 +70,5 @@ class User:NSObject{
     var name = ""
     var age = 0
     var job:Job = Job()
+    var arr:Array<Job> = []
 }

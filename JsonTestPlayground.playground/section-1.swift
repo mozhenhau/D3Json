@@ -2,14 +2,19 @@
 
 import UIKit
 
+
+@objc(Job)
 class Job:NSObject{
     var name = ""
 }
 
+
+@objc(User)
 class User:NSObject{
     var name = ""
     var age = 0
-//    var job = Job()
+    var job = Job()
+    var jobArr:Array<Job> = []
 }
 
 
@@ -145,6 +150,10 @@ class D3Json{
         case _ as Job.Type:
             obj.setValue(jsonToModel(dic.objectForKey(key), objc: Job()),forKey:key)
             
+        case _ as Array<Job>.Type:
+            var value:Array<Job> = jsonToModelList((dic.objectForKey(key) as? NSArray), objc: Job())
+            obj.setValue(value, forKey: key)
+            
         default:     //unknow
             println("key:\(key),unknow,sure that you hava init")
         }
@@ -153,15 +162,15 @@ class D3Json{
 }
 
 //
-//var json = [
-//    "name": "ok",
-//    "age":1,
-//    "job": [
-//        "name":"swift"
-//    ] 
-//]
-//
-//var user:User = D3Json.jsonToModel(json, clazz: User.self, objc: User())
+var json = [
+    "name": "ok",
+    "age":1,
+    "job": [
+        "name":"swif1t"
+    ] 
+]
+
+var user:User = D3Json.jsonToModel(json, clazz: User.self, objc: User())
 //
 //
 //var json2 = [
@@ -184,30 +193,30 @@ class D3Json{
 //
 //
 
-var json = [
-    "products": [
-    [
-    "name": "方大同",
-    "filename": "menu_1.png"
-    ],
-    [
-    "name": "mm",
-    "filename": "DSC_1186.JPGt"
-    ],
-    [
-    "name": "測試",
-    "filename": "DSC_1198.JPGt"
-    ]
-    ],
-    "success": 2
-]
-
-class Product:NSObject{
-    var name = ""
-    var filename = ""
-}
-
-var lists:Array<Product> =  D3Json.jsonToModelList(json.objectForKey("products"), objc: Product())
+//var json = [
+//    "products": [
+//    [
+//    "name": "方大同",
+//    "filename": "menu_1.png"
+//    ],
+//    [
+//    "name": "mm",
+//    "filename": "DSC_1186.JPGt"
+//    ],
+//    [
+//    "name": "測試",
+//    "filename": "DSC_1198.JPGt"
+//    ]
+//    ],
+//    "success": 2
+//]
+//
+//class Product:NSObject{
+//    var name = ""
+//    var filename = ""
+//}
+//
+//var lists:Array<Product> =  D3Json.jsonToModelList(json.objectForKey("products"), objc: Product())
 
 
 

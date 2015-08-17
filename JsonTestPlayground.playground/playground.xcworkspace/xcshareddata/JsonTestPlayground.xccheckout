@@ -7,32 +7,32 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>AB233022-D883-462B-8168-265BF0D48AD7</string>
 	<key>IDESourceControlProjectName</key>
-	<string>JsonTestPlayground</string>
+	<string>playground</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>96C4BD254190771D41810AABFF24D16856D7C453</key>
+		<key>BA283F7976D21D5CD328875E461FDB7487E6C9C6</key>
 		<string>https://github.com/mozhenhau/D3Json.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>JsonTestPlayground.playground</string>
+	<string>JsonTestPlayground.playground/playground.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>96C4BD254190771D41810AABFF24D16856D7C453</key>
-		<string>..</string>
+		<key>BA283F7976D21D5CD328875E461FDB7487E6C9C6</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/mozhenhau/D3Json.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>96C4BD254190771D41810AABFF24D16856D7C453</string>
+	<string>BA283F7976D21D5CD328875E461FDB7487E6C9C6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>96C4BD254190771D41810AABFF24D16856D7C453</string>
+			<string>BA283F7976D21D5CD328875E461FDB7487E6C9C6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>D3Json</string>
 		</dict>

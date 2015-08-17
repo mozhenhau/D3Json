@@ -133,11 +133,15 @@ public class D3Json{
     */
     private class func addExtension(key:String,type:Any.Type,obj:AnyObject,dic:AnyObject){
         switch type {
-//        case _ as User.Type:
-//            obj.setValue(jsonToModel(dic.objectForKey(key), objc: User()),forKey:key)
-//            
-//        case _ as Job.Type:
-//            obj.setValue(jsonToModel(dic.objectForKey(key), objc: Job()),forKey:key)
+        case _ as User.Type:
+            obj.setValue(jsonToModel(dic.objectForKey(key), objc: User()),forKey:key)
+            
+        case _ as Job.Type:
+            obj.setValue(jsonToModel(dic.objectForKey(key), objc: Job()),forKey:key)
+            
+        case _ as Array<Job>.Type:
+            var value:Array<Job> = jsonToModelList((dic.objectForKey(key) as? NSArray), objc: Job())
+            obj.setValue(value, forKey: key)
             
         default:     //unknow
             println("key:\(key),unknow,sure that you hava init")
