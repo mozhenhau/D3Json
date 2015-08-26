@@ -29,6 +29,35 @@ class ViewController: UIViewController {
         var userDescription = "name:\(user.name),age:\(user.age),job:\(user.job.name),skills:\(user.skills[0].name),\(user.skills[1].name)"
         println(userDescription)
         label.text = userDescription
+        
+        
+        var jsonArr = [
+            [
+                "name": "ok",
+                "age":1,
+                "job": [
+                    "name":"ios开发"
+                ],
+                "skills":[
+                    ["name":"swift"],
+                    ["name":"objc"]
+                ]
+            ],
+            [
+                "name": "ok2",
+                "age":2,
+                "job": [
+                    "name":"ios开发1"
+                ],
+                "skills":[
+                    ["name":"swift1"],
+                    ["name":"objc1"]
+                ]
+            ]
+        ]
+        var users = D3Json.jsonToModelList(jsonArr, clazz: User.self) as! Array<User>
+        println(users)
+
     }
 
 }
