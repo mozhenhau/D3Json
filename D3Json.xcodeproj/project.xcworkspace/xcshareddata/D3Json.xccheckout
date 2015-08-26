@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DA3C2E69-B51F-4658-B64D-78793D7B85C2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>D3Json</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BA283F7976D21D5CD328875E461FDB7487E6C9C6</key>
+		<string>https://github.com/mozhenhau/D3Json.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>D3Json.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BA283F7976D21D5CD328875E461FDB7487E6C9C6</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mozhenhau/D3Json.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BA283F7976D21D5CD328875E461FDB7487E6C9C6</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BA283F7976D21D5CD328875E461FDB7487E6C9C6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>D3Json</string>
+		</dict>
+	</array>
+</dict>
+</plist>

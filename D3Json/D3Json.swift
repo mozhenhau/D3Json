@@ -1,27 +1,16 @@
-// Playground - noun: a place where people can play
+//
+//  D3json.swift
+//  D3Json
+//
+//  Created by mozhenhau on 15/2/12.
+//  Copyright (c) 2015年 mozhenhau. All rights reserved.
+//
 
-import UIKit
+import Foundation
 
-
-
-
-@objc(Job)
-class Job:NSObject{
-    var name = ""
-}
-
-
-@objc(User)
-class User:NSObject{
-    var name = ""
-    var age = 0
-    var job:Job!
-    var jobArr:Array<Job>!
-}
-
-class D3Json{
+public class D3Json{
     //MARK: json转到model
-    class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass)->T!{
+    public class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass)->T!{
         if dics == nil{
             return nil
         }
@@ -89,7 +78,7 @@ class D3Json{
                 default:     //unknow
                     var clz: AnyClass! = swiftClassFromString(String(stringInterpolationSegment: type))
                     if var data = dic.objectForKey(key) as? NSArray{
-                        var value = jsonToModelList(data, clazz: clz)
+                    var value = jsonToModelList(data, clazz: clz)
                         obj.setValue(value, forKey: key)
                     }
                     else{
@@ -102,11 +91,11 @@ class D3Json{
         else{
             return nil
         }
-        return obj as! T
+        return (obj as! T)
     }
     
     //MARK: json转到model list,传入anyobject
-    class func jsonToModelList(data:AnyObject?,clazz:AnyClass)->Array<AnyObject>{
+    public class func jsonToModelList(data:AnyObject?,clazz:AnyClass)->Array<AnyObject>{
         if data == nil{
             return []
         }
@@ -124,19 +113,16 @@ class D3Json{
     
     // create a static method to get a swift class for a string name
     private class func swiftClassFromString(className: NSString) -> AnyClass! {
-        println(className)
         // get the project name
         var clazz:AnyClass! = NSClassFromString(className as String)
         if clazz == nil{    //swift
-//            var appName:String?  = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String?
-            //FIXME playground的不同...
-            var appName:String? = "__lldb_expr_"
+            var appName:String?  = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String?
             //swift 的model需要转过才能NSClassFromString
             var range = className.rangeOfString("<\(appName!).*?>", options: NSStringCompareOptions.RegularExpressionSearch)
             if range.location != NSNotFound{
                 if className.containsString(appName!){
-                    range.location += 4 + count(appName!)  //< .
-                    range.length -= 5 + count(appName!)  // < . >
+                    range.location += 2 + count(appName!)  //< .
+                    range.length -= 3 + count(appName!)  // < . >
                 }
                 else{
                     range.location += 1
@@ -150,71 +136,3 @@ class D3Json{
         return clazz;
     }
 }
-
-
-//
-var json = [
-    "name": "ok123",
-    "age":1,
-    "job": [
-        "name":"ios"
-    ],
-    "jobArr":[
-        ["name":"swift"],
-        ["name":"objc"]
-    ]
-]
-
-var user:User = D3Json.jsonToModel(json, clazz: User.self)
-user.jobArr
-//
-//
-//var json2 = [
-//    [
-//        "name": "ok",
-//        "age":1,
-//        "job": [
-//            "name":"swift"
-//        ]
-//    ],
-//    [
-//        "name": "no ok",
-//        "age":2,
-//        "job": [
-//            "name":"obc"
-//        ]
-//    ]
-//]
-//var users:Array<User> = D3Json.jsonToModelList(json2, clazz: User.self, objc: User())
-//
-//
-
-//var json = [
-//    "products": [
-//    [
-//    "name": "方大同",
-//    "filename": "menu_1.png"
-//    ],
-//    [
-//    "name": "mm",
-//    "filename": "DSC_1186.JPGt"
-//    ],
-//    [
-//    "name": "測試",
-//    "filename": "DSC_1198.JPGt"
-//    ]
-//    ],
-//    "success": 2
-//]
-//
-//class Product:NSObject{
-//    var name = ""
-//    var filename = ""
-//}
-//
-//var lists:Array<Product> =  D3Json.jsonToModelList(json.objectForKey("products"), objc: Product())
-
-
-
-
-

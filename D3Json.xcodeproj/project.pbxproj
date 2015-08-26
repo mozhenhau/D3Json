@@ -10,9 +10,9 @@
 		16D6429F1B8D9EB700C6F834 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D6429E1B8D9EB700C6F834 /* AppDelegate.swift */; };
 		16D642A11B8D9EB700C6F834 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D642A01B8D9EB700C6F834 /* ViewController.swift */; };
 		16D642A41B8D9EB700C6F834 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16D642A21B8D9EB700C6F834 /* Main.storyboard */; };
-		16D642A61B8D9EB700C6F834 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16D642A51B8D9EB700C6F834 /* Images.xcassets */; };
 		16D642A91B8D9EB700C6F834 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16D642A71B8D9EB700C6F834 /* LaunchScreen.xib */; };
 		16D642B51B8D9EB700C6F834 /* D3JsonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D642B41B8D9EB700C6F834 /* D3JsonTests.swift */; };
+		16D642BF1B8D9EF500C6F834 /* D3Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D642BE1B8D9EF500C6F834 /* D3Json.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,11 +31,11 @@
 		16D6429E1B8D9EB700C6F834 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16D642A01B8D9EB700C6F834 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		16D642A31B8D9EB700C6F834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		16D642A51B8D9EB700C6F834 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		16D642A81B8D9EB700C6F834 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		16D642AE1B8D9EB700C6F834 /* D3JsonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = D3JsonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16D642B31B8D9EB700C6F834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16D642B41B8D9EB700C6F834 /* D3JsonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = D3JsonTests.swift; sourceTree = "<group>"; };
+		16D642BE1B8D9EF500C6F834 /* D3Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = D3Json.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +77,10 @@
 		16D6429B1B8D9EB700C6F834 /* D3Json */ = {
 			isa = PBXGroup;
 			children = (
+				16D642BE1B8D9EF500C6F834 /* D3Json.swift */,
 				16D6429E1B8D9EB700C6F834 /* AppDelegate.swift */,
 				16D642A01B8D9EB700C6F834 /* ViewController.swift */,
 				16D642A21B8D9EB700C6F834 /* Main.storyboard */,
-				16D642A51B8D9EB700C6F834 /* Images.xcassets */,
 				16D642A71B8D9EB700C6F834 /* LaunchScreen.xib */,
 				16D6429C1B8D9EB700C6F834 /* Supporting Files */,
 			);
@@ -194,7 +194,6 @@
 			files = (
 				16D642A41B8D9EB700C6F834 /* Main.storyboard in Resources */,
 				16D642A91B8D9EB700C6F834 /* LaunchScreen.xib in Resources */,
-				16D642A61B8D9EB700C6F834 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16D642BF1B8D9EF500C6F834 /* D3Json.swift in Sources */,
 				16D642A11B8D9EB700C6F834 /* ViewController.swift in Sources */,
 				16D6429F1B8D9EB700C6F834 /* AppDelegate.swift in Sources */,
 			);
@@ -341,6 +341,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = D3Json/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -351,6 +352,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = D3Json/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -409,6 +411,7 @@
 				16D642BA1B8D9EB700C6F834 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		16D642BB1B8D9EB700C6F834 /* Build configuration list for PBXNativeTarget "D3JsonTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +420,7 @@
 				16D642BD1B8D9EB700C6F834 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
