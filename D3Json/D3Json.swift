@@ -77,15 +77,19 @@ public class D3Json{
                     
                 default:     //unknow
                     var clz: AnyClass! = swiftClassFromString(String(stringInterpolationSegment: type))
-                    if var data = dic.objectForKey(key) as? NSArray{
-                    var value = jsonToModelList(data, clazz: clz)
-                        obj.setValue(value, forKey: key)
+                    if clz != nil{
+                        if var data = dic.objectForKey(key) as? NSArray{
+                            var value = jsonToModelList(data, clazz: clz)
+                                obj.setValue(value, forKey: key)
+                        }
+                        else{
+                            obj.setValue(jsonToModel(dic.objectForKey(key), clazz: clz),forKey:key)
+                        }
                     }
                     else{
-                        obj.setValue(jsonToModel(dic.objectForKey(key), clazz: clz),forKey:key)
+                        println("unknown property")
                     }
                 }
-                
             }
         }
         else{

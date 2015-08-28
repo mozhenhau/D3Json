@@ -157,7 +157,7 @@ var json = [
     "name": "ok123",
     "age":1,
     "job": [
-        "name":"ios"
+        "name":"ios1"
     ],
     "jobArr":[
         ["name":"swift"],

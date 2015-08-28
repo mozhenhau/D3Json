@@ -57,9 +57,7 @@ class ViewController: UIViewController {
         ]
         var users = D3Json.jsonToModelList(jsonArr, clazz: User.self) as! Array<User>
         println(users)
-
     }
-
 }
 
 
