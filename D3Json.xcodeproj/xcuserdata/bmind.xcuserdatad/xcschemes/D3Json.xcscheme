@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0630"
+   LastUpgradeVersion = "0640"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A56605B01B05A05B00BF93DD"
-               BuildableName = "D3Json.framework"
+               BlueprintIdentifier = "16D642981B8D9EB700C6F834"
+               BuildableName = "D3Json.app"
                BlueprintName = "D3Json"
                ReferencedContainer = "container:D3Json.xcodeproj">
             </BuildableReference>
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A56605BB1B05A05B00BF93DD"
+               BlueprintIdentifier = "16D642AD1B8D9EB700C6F834"
                BuildableName = "D3JsonTests.xctest"
                BlueprintName = "D3JsonTests"
                ReferencedContainer = "container:D3Json.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A56605BB1B05A05B00BF93DD"
+               BlueprintIdentifier = "16D642AD1B8D9EB700C6F834"
                BuildableName = "D3JsonTests.xctest"
                BlueprintName = "D3JsonTests"
                ReferencedContainer = "container:D3Json.xcodeproj">
@@ -56,8 +56,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A56605B01B05A05B00BF93DD"
-            BuildableName = "D3Json.framework"
+            BlueprintIdentifier = "16D642981B8D9EB700C6F834"
+            BuildableName = "D3Json.app"
             BlueprintName = "D3Json"
             ReferencedContainer = "container:D3Json.xcodeproj">
          </BuildableReference>
@@ -72,15 +72,16 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A56605B01B05A05B00BF93DD"
-            BuildableName = "D3Json.framework"
+            BlueprintIdentifier = "16D642981B8D9EB700C6F834"
+            BuildableName = "D3Json.app"
             BlueprintName = "D3Json"
             ReferencedContainer = "container:D3Json.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -90,15 +91,16 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A56605B01B05A05B00BF93DD"
-            BuildableName = "D3Json.framework"
+            BlueprintIdentifier = "16D642981B8D9EB700C6F834"
+            BuildableName = "D3Json.app"
             BlueprintName = "D3Json"
             ReferencedContainer = "container:D3Json.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

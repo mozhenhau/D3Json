@@ -2,48 +2,34 @@
 
 import UIKit
 
+
+
+
+@objc(Job)
 class Job:NSObject{
     var name = ""
 }
 
+
+@objc(User)
 class User:NSObject{
     var name = ""
     var age = 0
-//    var job = Job()
+    var job:Job!
+    var jobArr:Array<Job>!
 }
 
-
-
 class D3Json{
-    class func jsonToModel<T>(dics:AnyObject?,objc:AnyObject?)->T!{
-        return jsonToModel(dics, clazz: nil, objc: objc)
-    }
-    
-    
-    class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass?)->T!{
-        return jsonToModel(dics, clazz: clazz, objc: nil)
-    }
-    
-    
     //MARK: json转到model
-    private class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass?,objc:AnyObject?)->T!{
+    class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass)->T!{
         if dics == nil{
             return nil
         }
         
         var obj:AnyObject!
         var properties:MirrorType!
-        if objc != nil{
-            obj = objc!.classForCoder.alloc() //新建对象
-            properties = reflect(objc!)
-        }
-        else if clazz != nil{
-            obj = clazz!.alloc()
-            properties = reflect(obj)
-        }
-        else{
-            return nil
-        }
+        obj = clazz.alloc() //新建对象
+        properties = reflect(obj!)
         
         var dic:AnyObject!
         if dics is NSArray{
@@ -66,12 +52,14 @@ class D3Json{
                     if value != nil{
                         obj.setValue(value, forKey: key)
                     }
+                    break
                     
                 case _ as String.Type:
                     var value: AnyObject! = dic?.objectForKey(key)
                     if value != nil{
                         obj.setValue(value.description, forKey: key)
                     }
+                    break
                     
                 case _ as Array<String>.Type:  //arr string
                     if let nsarray = dic?.objectForKey(key) as? NSArray {
@@ -83,6 +71,7 @@ class D3Json{
                         }
                         obj.setValue(array, forKey: key)
                     }
+                    break
                     
                     
                 case _ as Array<Int>.Type:   //arr int
@@ -95,9 +84,17 @@ class D3Json{
                         }
                         obj.setValue(array, forKey: key)
                     }
+                    break
                     
                 default:     //unknow
-                    addExtension(key,type:type,obj:obj,dic:dic)   //自己扩展自定义类
+                    var clz: AnyClass! = swiftClassFromString(String(stringInterpolationSegment: type))
+                    if var data = dic.objectForKey(key) as? NSArray{
+                        var value = jsonToModelList(data, clazz: clz)
+                        obj.setValue(value, forKey: key)
+                    }
+                    else{
+                        obj.setValue(jsonToModel(dic.objectForKey(key), clazz: clz),forKey:key)
+                    }
                 }
                 
             }
@@ -105,63 +102,71 @@ class D3Json{
         else{
             return nil
         }
-        return (obj as! T)
+        return obj as! T
     }
     
     //MARK: json转到model list,传入anyobject
-    class func jsonToModelList<T>(data:AnyObject?,objc:AnyObject)->Array<T>{
+    class func jsonToModelList(data:AnyObject?,clazz:AnyClass)->Array<AnyObject>{
         if data == nil{
             return []
         }
         
-        var objs:Array<T> = []
+        var objs:Array<AnyObject> = []
         if let dics = data as? NSArray{
             for(var i = 0 ;i < dics.count;i++){
                 var dic:AnyObject = dics[i]
-                objs.append(jsonToModel(dic,objc:objc))
+                objs.append(jsonToModel(dic,clazz:clazz))
             }
         }
         return objs
     }
     
     
-    /**
-    上面只实现了基本类型的，如果是自己定义的model，在此处做扩展.此处作例子，不需要可清除。
-    如有自己的User类，则增加：
-    case _ as User.Type:
-    obj.setValue(jsonToModel(dic.objectForKey(key), clazz: User.self, objc: User()),forKey:key)
-    如有自己的Job类，则把User改成Job则可
-    
-    :param: key  属性名
-    :param: type 属性的类型
-    :param: obj  要赋值的对象
-    :param: dic  json对象
-    */
-    private class func addExtension(key:String,type:Any.Type,obj:AnyObject,dic:AnyObject){
-        switch type {
-        case _ as User.Type:
-            obj.setValue(jsonToModel(dic.objectForKey(key), objc: User()),forKey:key)
-            
-        case _ as Job.Type:
-            obj.setValue(jsonToModel(dic.objectForKey(key), objc: Job()),forKey:key)
-            
-        default:     //unknow
-            println("key:\(key),unknow,sure that you hava init")
+    // create a static method to get a swift class for a string name
+    private class func swiftClassFromString(className: NSString) -> AnyClass! {
+        println(className)
+        // get the project name
+        var clazz:AnyClass! = NSClassFromString(className as String)
+        if clazz == nil{    //swift
+//            var appName:String?  = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String?
+            //FIXME playground的不同...
+            var appName:String? = "__lldb_expr_"
+            //swift 的model需要转过才能NSClassFromString
+            var range = className.rangeOfString("<\(appName!).*?>", options: NSStringCompareOptions.RegularExpressionSearch)
+            if range.location != NSNotFound{
+                if className.containsString(appName!){
+                    range.location += 4 + count(appName!)  //< .
+                    range.length -= 5 + count(appName!)  // < . >
+                }
+                else{
+                    range.location += 1
+                    range.length -= 2
+                }
+                
+                var clazzName = className.substringWithRange(range)
+                clazz = NSClassFromString(className.substringWithRange(range))
+            }
         }
+        return clazz;
     }
-    
 }
 
+
 //
-//var json = [
-//    "name": "ok",
-//    "age":1,
-//    "job": [
-//        "name":"swift"
-//    ] 
-//]
-//
-//var user:User = D3Json.jsonToModel(json, clazz: User.self, objc: User())
+var json = [
+    "name": "ok123",
+    "age":1,
+    "job": [
+        "name":"ios1"
+    ],
+    "jobArr":[
+        ["name":"swift"],
+        ["name":"objc"]
+    ]
+]
+
+var user:User = D3Json.jsonToModel(json, clazz: User.self)
+user.jobArr
 //
 //
 //var json2 = [
@@ -184,30 +189,30 @@ class D3Json{
 //
 //
 
-var json = [
-    "products": [
-    [
-    "name": "方大同",
-    "filename": "menu_1.png"
-    ],
-    [
-    "name": "mm",
-    "filename": "DSC_1186.JPGt"
-    ],
-    [
-    "name": "測試",
-    "filename": "DSC_1198.JPGt"
-    ]
-    ],
-    "success": 2
-]
-
-class Product:NSObject{
-    var name = ""
-    var filename = ""
-}
-
-var lists:Array<Product> =  D3Json.jsonToModelList(json.objectForKey("products"), objc: Product())
+//var json = [
+//    "products": [
+//    [
+//    "name": "方大同",
+//    "filename": "menu_1.png"
+//    ],
+//    [
+//    "name": "mm",
+//    "filename": "DSC_1186.JPGt"
+//    ],
+//    [
+//    "name": "測試",
+//    "filename": "DSC_1198.JPGt"
+//    ]
+//    ],
+//    "success": 2
+//]
+//
+//class Product:NSObject{
+//    var name = ""
+//    var filename = ""
+//}
+//
+//var lists:Array<Product> =  D3Json.jsonToModelList(json.objectForKey("products"), objc: Product())
 
 
 
