@@ -13,6 +13,7 @@
 		16D642A91B8D9EB700C6F834 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16D642A71B8D9EB700C6F834 /* LaunchScreen.xib */; };
 		16D642B51B8D9EB700C6F834 /* D3JsonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D642B41B8D9EB700C6F834 /* D3JsonTests.swift */; };
 		16D642BF1B8D9EF500C6F834 /* D3Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D642BE1B8D9EF500C6F834 /* D3Json.swift */; };
+		A5F5E54D1BB449F00079FEB5 /* ObjectUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F5E54C1BB449F00079FEB5 /* ObjectUtil.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,9 @@
 		16D642B31B8D9EB700C6F834 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16D642B41B8D9EB700C6F834 /* D3JsonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = D3JsonTests.swift; sourceTree = "<group>"; };
 		16D642BE1B8D9EF500C6F834 /* D3Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = D3Json.swift; sourceTree = "<group>"; };
+		A5F5E54A1BB449EF0079FEB5 /* D3Json-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "D3Json-Bridging-Header.h"; sourceTree = "<group>"; };
+		A5F5E54B1BB449F00079FEB5 /* ObjectUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectUtil.h; sourceTree = "<group>"; };
+		A5F5E54C1BB449F00079FEB5 /* ObjectUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,9 @@
 				16D642A21B8D9EB700C6F834 /* Main.storyboard */,
 				16D642A71B8D9EB700C6F834 /* LaunchScreen.xib */,
 				16D6429C1B8D9EB700C6F834 /* Supporting Files */,
+				A5F5E54B1BB449F00079FEB5 /* ObjectUtil.h */,
+				A5F5E54C1BB449F00079FEB5 /* ObjectUtil.m */,
+				A5F5E54A1BB449EF0079FEB5 /* D3Json-Bridging-Header.h */,
 			);
 			path = D3Json;
 			sourceTree = "<group>";
@@ -156,6 +163,7 @@
 		16D642911B8D9EB700C6F834 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = d3;
 				TargetAttributes = {
@@ -211,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F5E54D1BB449F00079FEB5 /* ObjectUtil.m in Sources */,
 				16D642BF1B8D9EF500C6F834 /* D3Json.swift in Sources */,
 				16D642A11B8D9EB700C6F834 /* ViewController.swift in Sources */,
 				16D6429F1B8D9EB700C6F834 /* AppDelegate.swift in Sources */,
@@ -340,10 +349,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = D3Json/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "D3Json/D3Json-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -351,10 +363,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = D3Json/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "D3Json/D3Json-Bridging-Header.h";
 			};
 			name = Release;
 		};

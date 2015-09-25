@@ -10,16 +10,10 @@ import Foundation
 
 public class D3Json{
     //MARK: json转到model
-    public class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass)->T!{
-        if dics == nil{
+    public class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass?)->T!{
+        if dics == nil || clazz == nil{
             return nil
         }
-        
-        var obj:AnyObject!
-        var properties:MirrorType!
-        obj = clazz.alloc() //新建对象
-        properties = reflect(obj!)
-        
         var dic:AnyObject!
         if dics is NSArray{
             dic = dics!.lastObject
@@ -28,69 +22,77 @@ public class D3Json{
             dic = dics
         }
         
+        //get mirror
+        let obj:AnyObject = ObjectUtil.ObjFromClass(clazz!) //新建对象
+        let properties:Mirror! = Mirror(reflecting: obj)
         
         if dic != nil{
-            for(var i:Int = 1;i < properties.count;i++){  //因为是继承NSObject对象的，0是NSObject，所以从1开始
-                let pro = properties[i]
+            if let b = AnyBidirectionalCollection(properties.children) {
+                for i in b.endIndex.advancedBy(-20, limit: b.startIndex)..<b.endIndex {  //因为是继承NSObject对象的，0是NSObject，所以从1开始
+                let pro = b[i]
                 let key = pro.0        //pro  name
-                let type = pro.1.valueType    // pro type
-                
+                let type = pro.1    // pro type
+
                 switch type {
-                case _ as Int.Type,_ as Int64.Type,_ as Float.Type,_ as Double.Type,_ as Bool.Type:  //base type
-                    var value: AnyObject! = dic?.objectForKey(key)
+                case _ as Int,_ as Int64,_ as Float,_ as Double,_ as Bool:  //base type
+                    let value: AnyObject! = dic?.objectForKey(key!)
                     if value != nil{
-                        obj.setValue(value, forKey: key)
+                        obj.setValue(value, forKey: key!)
                     }
                     break
                     
-                case _ as String.Type:
-                    var value: AnyObject! = dic?.objectForKey(key)
+                case _ as String:
+                    let value: AnyObject! = dic?.objectForKey(key!)
                     if value != nil{
-                        obj.setValue(value.description, forKey: key)
+                        obj.setValue(value.description, forKey: key!)
                     }
                     break
                     
-                case _ as Array<String>.Type:  //arr string
-                    if let nsarray = dic?.objectForKey(key) as? NSArray {
+                case _ as Array<String>:  //arr string
+                    if let nsarray = dic?.objectForKey(key!) as? NSArray {
                         var array:Array<String> = []
                         for el in nsarray {
                             if let typedElement = el as? String {
                                 array.append(typedElement)
                             }
                         }
-                        obj.setValue(array, forKey: key)
+                        obj.setValue(array, forKey: key!)
                     }
                     break
                     
                     
-                case _ as Array<Int>.Type:   //arr int
-                    if let nsarray = dic?.objectForKey(key) as? NSArray {
+                case _ as Array<Int>:   //arr int
+                    if let nsarray = dic?.objectForKey(key!) as? NSArray {
                         var array:Array<Int> = []
                         for el in nsarray {
                             if let typedElement = el as? Int {
                                 array.append(typedElement)
                             }
                         }
-                        obj.setValue(array, forKey: key)
+                        obj.setValue(array, forKey: key!)
                     }
                     break
                     
                 default:     //unknow
-                    var clz: AnyClass! = swiftClassFromString(String(stringInterpolationSegment: type))
+//                    let clz: AnyClass! = swiftClassFromString(String(stringInterpolationSegment: type))
+                    let name:NSString = String(Mirror(reflecting: type).subjectType)
+                    let clz:AnyClass! = NSClassFromString(getClassName(name) as String)
+                    
                     if clz != nil{
-                        if var data = dic.objectForKey(key) as? NSArray{
-                            var value = jsonToModelList(data, clazz: clz)
-                                obj.setValue(value, forKey: key)
+                        if let data = dic.objectForKey(key!) as? NSArray{
+                            let value = jsonToModelList(data, clazz: clz)
+                                obj.setValue(value, forKey: key!)
                         }
                         else{
-                            obj.setValue(jsonToModel(dic.objectForKey(key), clazz: clz),forKey:key)
+                            obj.setValue(jsonToModel(dic.objectForKey(key!), clazz: clz),forKey:key!)
                         }
                     }
                     else{
-                        println("unknown property")
+                        print("unknown property")
                     }
                 }
             }
+        }
         }
         else{
             return nil
@@ -107,36 +109,24 @@ public class D3Json{
         var objs:Array<AnyObject> = []
         if let dics = data as? NSArray{
             for(var i = 0 ;i < dics.count;i++){
-                var dic:AnyObject = dics[i]
+                let dic:AnyObject = dics[i]
                 objs.append(jsonToModel(dic,clazz:clazz))
             }
         }
         return objs
     }
+
     
-    
-    // create a static method to get a swift class for a string name
-    private class func swiftClassFromString(className: NSString) -> AnyClass! {
-        // get the project name
-        var clazz:AnyClass! = NSClassFromString(className as String)
-        if clazz == nil{    //swift
-            var appName:String?  = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleName") as! String?
-            //swift 的model需要转过才能NSClassFromString
-            var range = className.rangeOfString("<\(appName!).*?>", options: NSStringCompareOptions.RegularExpressionSearch)
-            if range.location != NSNotFound{
-                if className.containsString(appName!){
-                    range.location += 2 + count(appName!)  //< .
-                    range.length -= 3 + count(appName!)  // < . >
-                }
-                else{
-                    range.location += 1
-                    range.length -= 2
-                }
-                
-                var clazzName = className.substringWithRange(range)
-                clazz = NSClassFromString(className.substringWithRange(range))
-            }
+    //从一串Optional<*******>找到类名字符串
+    private class func getClassName(name:NSString)->NSString!{
+        var range = name.rangeOfString("<.*>", options: NSStringCompareOptions.RegularExpressionSearch)
+        if range.location != NSNotFound{
+            range.location += 1
+            range.length -= 2
+            return getClassName(name.substringWithRange(range))
         }
-        return clazz;
+        else{
+            return name
+        }
     }
 }
