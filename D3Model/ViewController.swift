@@ -20,12 +20,13 @@ class ViewController: UIViewController {
             "job": [
                 "name":"ios开发"
             ],
+            "say":["1","2","3"],
             "skills":[
                 ["name":"swift"],
                 ["name":"objc"]
             ]
         ]
-        let user:User = D3Json.jsonToModel(json, clazz: User.self)
+        let user:User = User.jsonToModel(json)
         let userDescription = "name:\(user.name),age:\(user.age),job:\(user.job.name),skills:\(user.skills[0].name),\(user.skills[1].name)"
         print(userDescription)
         label.text = userDescription
@@ -55,7 +56,7 @@ class ViewController: UIViewController {
                 ]
             ]
         ]
-        let users = D3Json.jsonToModelList(jsonArr, clazz: User.self) as! Array<User>
+        let users = User.jsonToModelList(jsonArr) as! Array<User>
         print(users)
     }
 }
@@ -64,14 +65,15 @@ class ViewController: UIViewController {
 
 
 @objc(Job)   //不加的话NSClassFromString会返回nil
-class Job:NSObject{
+class Job:D3Model{
     var name = ""
 }
 
 @objc(User)
-class User:NSObject{
-    var name = ""
-    var age = 0            //基础类型需要初始化
-    var job = Job()  //reflect有个bug。如果自定义类型不弄成Optional类型，会读取不了属性
+class User:D3Model{
+    var name:String!
+    var age:Int = 0           //基础类型需要初始化
+    var job:Job!
+    var say:Array<String>!
     var skills:Array<Job>!
 }

@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  D3Json
+//  D3Model
 //
-//  Created by bmind on 15/8/26.
-//  Copyright (c) 2015年 d3. All rights reserved.
+//  Created by mozhenhau on 15/10/22.
+//  Copyright © 2015年 mozhenhau. All rights reserved.
 //
 
 import UIKit

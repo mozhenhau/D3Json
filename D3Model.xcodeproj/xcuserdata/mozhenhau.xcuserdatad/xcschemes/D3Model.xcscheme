@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "16D642981B8D9EB700C6F834"
-               BuildableName = "D3Json.app"
-               BlueprintName = "D3Json"
-               ReferencedContainer = "container:D3Json.xcodeproj">
+               BlueprintIdentifier = "A52084471BD7EF2A00884785"
+               BuildableName = "D3Model.app"
+               BlueprintName = "D3Model"
+               ReferencedContainer = "container:D3Model.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,24 +28,14 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "16D642AD1B8D9EB700C6F834"
-               BuildableName = "D3JsonTests.xctest"
-               BlueprintName = "D3JsonTests"
-               ReferencedContainer = "container:D3Json.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "16D642981B8D9EB700C6F834"
-            BuildableName = "D3Json.app"
-            BlueprintName = "D3Json"
-            ReferencedContainer = "container:D3Json.xcodeproj">
+            BlueprintIdentifier = "A52084471BD7EF2A00884785"
+            BuildableName = "D3Model.app"
+            BlueprintName = "D3Model"
+            ReferencedContainer = "container:D3Model.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "16D642981B8D9EB700C6F834"
-            BuildableName = "D3Json.app"
-            BlueprintName = "D3Json"
-            ReferencedContainer = "container:D3Json.xcodeproj">
+            BlueprintIdentifier = "A52084471BD7EF2A00884785"
+            BuildableName = "D3Model.app"
+            BlueprintName = "D3Model"
+            ReferencedContainer = "container:D3Model.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -84,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "16D642981B8D9EB700C6F834"
-            BuildableName = "D3Json.app"
-            BlueprintName = "D3Json"
-            ReferencedContainer = "container:D3Json.xcodeproj">
+            BlueprintIdentifier = "A52084471BD7EF2A00884785"
+            BuildableName = "D3Model.app"
+            BlueprintName = "D3Model"
+            ReferencedContainer = "container:D3Model.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

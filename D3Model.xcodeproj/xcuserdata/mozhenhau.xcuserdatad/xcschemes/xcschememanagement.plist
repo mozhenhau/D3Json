@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>D3Json.xcscheme</key>
+		<key>D3Model.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,12 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>16D642981B8D9EB700C6F834</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>16D642AD1B8D9EB700C6F834</key>
+		<key>A52084471BD7EF2A00884785</key>
 		<dict>
 			<key>primary</key>
 			<true/>

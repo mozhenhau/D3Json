@@ -1,6 +1,6 @@
 //
-//  D3json.swift
-//  D3Json
+//  D3Model.swift
+//  D3Model
 //
 //  Created by mozhenhau on 15/2/12.
 //  Copyright (c) 2015年 mozhenhau. All rights reserved.
@@ -8,10 +8,11 @@
 
 import Foundation
 
-public class D3Json{
+public class D3Model:NSObject{
+    required override public init(){}
     //MARK: json转到model
-    public class func jsonToModel<T>(dics:AnyObject?,clazz:AnyClass?)->T!{
-        if dics == nil || clazz == nil{
+    public class func jsonToModel<T>(dics:AnyObject?)->T!{
+        if dics == nil {
             return nil
         }
         var dic:AnyObject!
@@ -23,7 +24,7 @@ public class D3Json{
         }
         
         //get mirror
-        let obj:AnyObject = ObjectUtil.ObjFromClass(clazz!) //新建对象
+        let obj:AnyObject = self.init() //新建对象
         let properties:Mirror! = Mirror(reflecting: obj)
         
         if dic != nil{
@@ -34,21 +35,21 @@ public class D3Json{
                 let type = pro.1    // pro type
 
                 switch type {
-                case _ as Int,_ as Int64,_ as Float,_ as Double,_ as Bool:  //base type
+                case is Int,is Int64,is Float,is Double,is Bool,is NSNumber,is NSInteger:  //base type
                     let value: AnyObject! = dic?.objectForKey(key!)
                     if value != nil{
                         obj.setValue(value, forKey: key!)
                     }
                     break
                     
-                case _ as String:
+                case is String:
                     let value: AnyObject! = dic?.objectForKey(key!)
                     if value != nil{
                         obj.setValue(value.description, forKey: key!)
                     }
                     break
                     
-                case _ as Array<String>:  //arr string
+                case is Array<String>:  //arr string
                     if let nsarray = dic?.objectForKey(key!) as? NSArray {
                         var array:Array<String> = []
                         for el in nsarray {
@@ -61,7 +62,7 @@ public class D3Json{
                     break
                     
                     
-                case _ as Array<Int>:   //arr int
+                case is Array<Int>:   //arr int
                     if let nsarray = dic?.objectForKey(key!) as? NSArray {
                         var array:Array<Int> = []
                         for el in nsarray {
@@ -74,21 +75,32 @@ public class D3Json{
                     break
                     
                 default:     //unknow
-//                    let clz: AnyClass! = swiftClassFromString(String(stringInterpolationSegment: type))
-                    let name:NSString = String(Mirror(reflecting: type).subjectType)
-                    let clz:AnyClass! = NSClassFromString(getClassName(name) as String)
+                    let otherType = Mirror(reflecting: type).subjectType
                     
-                    if clz != nil{
-                        if let data = dic.objectForKey(key!) as? NSArray{
-                            let value = jsonToModelList(data, clazz: clz)
+                    switch otherType{
+                    case is Optional<String>.Type,is Optional<NSNumber>.Type,is Optional<NSInteger>.Type,is Optional<Array<String>>.Type,is Optional<Array<Int>>.Type:
+                        obj.setValue(dic?.objectForKey(key!), forKey: key!)
+                        break
+                    
+                    default:
+                        let name:NSString = String(otherType)
+                        let className = getClassName(name) as String
+                        let clz:AnyClass! = NSClassFromString(className)
+                        
+                        if clz != nil{
+                            if let data = dic.objectForKey(key!) as? NSArray{
+                                let value = clz.jsonToModelList(data)
                                 obj.setValue(value, forKey: key!)
+                            }
+                            else{
+                                let value = dic.objectForKey(key!)
+                                obj.setValue((clz as! D3Model.Type).jsonToModel(value),forKey:key!)
+                            }
                         }
                         else{
-                            obj.setValue(jsonToModel(dic.objectForKey(key!), clazz: clz),forKey:key!)
+                            print("unknown property")
                         }
-                    }
-                    else{
-                        print("unknown property")
+                        break
                     }
                 }
             }
@@ -101,7 +113,7 @@ public class D3Json{
     }
     
     //MARK: json转到model list,传入anyobject
-    public class func jsonToModelList(data:AnyObject?,clazz:AnyClass)->Array<AnyObject>{
+    public class func jsonToModelList(data:AnyObject?)->Array<AnyObject>{
         if data == nil{
             return []
         }
@@ -110,7 +122,7 @@ public class D3Json{
         if let dics = data as? NSArray{
             for(var i = 0 ;i < dics.count;i++){
                 let dic:AnyObject = dics[i]
-                objs.append(jsonToModel(dic,clazz:clazz))
+                objs.append(jsonToModel(dic))
             }
         }
         return objs
