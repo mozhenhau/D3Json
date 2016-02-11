@@ -27,7 +27,7 @@ var users = User.jsonToModelList(jsonArr) as! Array<User>
 #Integration
 ##CocoaPods (iOS 8+, OS X 10.9+)
 
-You can use Cocoapods to install D3Json adding it to your Podfile:
+You can use CocoaPods to install D3Json adding it to your Podfile:
 
     platform :ios, '7.0'
     use_frameworks!
