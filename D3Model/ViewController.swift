@@ -14,54 +14,80 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let json = [
-            "name": "ok",
-            "age":1,
-            "job": [
-                "name":"ios开发"
-            ],
-            "say":["1","2","3"],
-            "skills":[
-                ["name":"swift"],
-                ["name":"objc"]
-            ]
-        ]
-        let user:User = User.jsonToModel(json)
-        let userDescription = "name:\(user.name),age:\(user.age),job:\(user.job.name),skills:\(user.skills[0].name),\(user.skills[1].name)"
-        print(userDescription)
-        label.text = userDescription
+        let dataJson = NSBundle.mainBundle().pathForResource("data", ofType: "json")
+        let data = NSData(contentsOfFile: dataJson!)
+        
+        do{
+            let json =  try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+                print(json)
+            let ios = IOS.jsonToModelList(json.objectForKey("results")) as! Array<IOS>
+            
+            print(ios)
+        }
+        catch{
+            print(error)
+        }
         
         
-        let jsonArr = [
-            [
-                "name": "ok",
-                "age":1,
-                "job": [
-                    "name":"ios开发"
-                ],
-                "skills":[
-                    ["name":"swift"],
-                    ["name":"objc"]
-                ]
-            ],
-            [
-                "name": "ok2",
-                "age":2,
-                "job": [
-                    "name":"ios开发1"
-                ],
-                "skills":[
-                    ["name":"swift1"],
-                    ["name":"objc1"]
-                ]
-            ]
-        ]
-        let users = User.jsonToModelList(jsonArr) as! Array<User>
-        print(users)
+//        let json = [
+//            "name": "ok",
+//            "age":1,
+//            "job": [
+//                "name":"ios开发"
+//            ],
+//            "say":["1","2","3"],
+//            "skills":[
+//                ["name":"swift"],
+//                ["name":"objc"]
+//            ]
+//        ]
+//        let user:User = User.jsonToModel(json)
+//        let userDescription = "name:\(user.name),age:\(user.age),job:\(user.job.name),skills:\(user.skills[0].name),\(user.skills[1].name)"
+//        print(userDescription)
+//        label.text = userDescription
+//        
+//        
+//        let jsonArr = [
+//            [
+//                "name": "ok",
+//                "age":1,
+//                "job": [
+//                    "name":"ios开发"
+//                ],
+//                "skills":[
+//                    ["name":"swift"],
+//                    ["name":"objc"]
+//                ]
+//            ],
+//            [
+//                "name": "ok2",
+//                "age":2,
+//                "job": [
+//                    "name":"ios开发1"
+//                ],
+//                "skills":[
+//                    ["name":"swift1"],
+//                    ["name":"objc1"]
+//                ]
+//            ]
+//        ]
+//        let users = User.jsonToModelList(jsonArr) as! Array<User>
+//        print(users)
     }
 }
 
-
+@objc(IOS)
+class IOS: D3Model {
+    var updatedAt = ""
+    var who = ""
+    var publishedAt = ""
+    var objectId = ""
+    var used = ""
+    var type = ""
+    var createdAt = ""
+    var desc = ""
+    var url = ""
+}
 
 
 @objc(Job)   //不加的话NSClassFromString会返回nil

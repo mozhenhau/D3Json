@@ -13,6 +13,7 @@
 		A52084511BD7EF2A00884785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A520844F1BD7EF2A00884785 /* Main.storyboard */; };
 		A52084531BD7EF2A00884785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A52084521BD7EF2A00884785 /* Assets.xcassets */; };
 		A52084561BD7EF2A00884785 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A52084541BD7EF2A00884785 /* LaunchScreen.storyboard */; };
+		A58F7ECF1BE5A4F2007AE34D /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = A58F7ECE1BE5A4F2007AE34D /* data.json */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A52084521BD7EF2A00884785 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A52084551BD7EF2A00884785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A52084571BD7EF2A00884785 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A58F7ECE1BE5A4F2007AE34D /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				A52084521BD7EF2A00884785 /* Assets.xcassets */,
 				A52084541BD7EF2A00884785 /* LaunchScreen.storyboard */,
 				A52084571BD7EF2A00884785 /* Info.plist */,
+				A58F7ECE1BE5A4F2007AE34D /* data.json */,
 			);
 			path = D3Model;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A52084561BD7EF2A00884785 /* LaunchScreen.storyboard in Resources */,
+				A58F7ECF1BE5A4F2007AE34D /* data.json in Resources */,
 				A52084531BD7EF2A00884785 /* Assets.xcassets in Resources */,
 				A52084511BD7EF2A00884785 /* Main.storyboard in Resources */,
 			);

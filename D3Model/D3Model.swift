@@ -29,82 +29,89 @@ public class D3Model:NSObject{
         
         if dic != nil{
             if let b = AnyBidirectionalCollection(properties.children) {
-                for i in b.endIndex.advancedBy(-20, limit: b.startIndex)..<b.endIndex {  //因为是继承NSObject对象的，0是NSObject，所以从1开始
-                let pro = b[i]
-                let key = pro.0        //pro  name
-                let type = pro.1    // pro type
-
-                switch type {
-                case is Int,is Int64,is Float,is Double,is Bool,is NSNumber,is NSInteger:  //base type
-                    let value: AnyObject! = dic?.objectForKey(key!)
-                    if value != nil{
-                        obj.setValue(value, forKey: key!)
-                    }
-                    break
+                for i in b.startIndex..<b.endIndex {  //因为是继承NSObject对象的，0是NSObject，所以从1开始
+                    let pro = b[i]
+                    let key = pro.0        //pro  name
+                    let type = pro.1    // pro type
                     
-                case is String:
-                    let value: AnyObject! = dic?.objectForKey(key!)
-                    if value != nil{
-                        obj.setValue(value.description, forKey: key!)
-                    }
-                    break
-                    
-                case is Array<String>:  //arr string
-                    if let nsarray = dic?.objectForKey(key!) as? NSArray {
-                        var array:Array<String> = []
-                        for el in nsarray {
-                            if let typedElement = el as? String {
-                                array.append(typedElement)
-                            }
+                    switch type {
+                    case is Int,is Int64,is NSInteger:
+                        let value = dic?.objectForKey(key!)?.integerValue
+                        if value != nil{
+                            obj.setValue(value, forKey: key!)
                         }
-                        obj.setValue(array, forKey: key!)
-                    }
-                    break
-                    
-                    
-                case is Array<Int>:   //arr int
-                    if let nsarray = dic?.objectForKey(key!) as? NSArray {
-                        var array:Array<Int> = []
-                        for el in nsarray {
-                            if let typedElement = el as? Int {
-                                array.append(typedElement)
-                            }
-                        }
-                        obj.setValue(array, forKey: key!)
-                    }
-                    break
-                    
-                default:     //unknow
-                    let otherType = Mirror(reflecting: type).subjectType
-                    
-                    switch otherType{
-                    case is Optional<String>.Type,is Optional<NSNumber>.Type,is Optional<NSInteger>.Type,is Optional<Array<String>>.Type,is Optional<Array<Int>>.Type:
-                        obj.setValue(dic?.objectForKey(key!), forKey: key!)
                         break
-                    
-                    default:
-                        let name:NSString = String(otherType)
-                        let className = getClassName(name) as String
-                        let clz:AnyClass! = NSClassFromString(className)
                         
-                        if clz != nil{
-                            if let data = dic.objectForKey(key!) as? NSArray{
-                                let value = clz.jsonToModelList(data)
-                                obj.setValue(value, forKey: key!)
+                    case is Float,is Double,is Bool,is NSNumber:  //base type
+                        let value: AnyObject! = dic?.objectForKey(key!)
+                        if value != nil{
+                            obj.setValue(value, forKey: key!)
+                        }
+                        break
+                        
+                    case is String:
+                        let value: AnyObject! = dic?.objectForKey(key!)
+                        if value != nil{
+                            obj.setValue(value.description, forKey: key!)
+                        }
+                        break
+                        
+                    case is Array<String>:  //arr string
+                        if let nsarray = dic?.objectForKey(key!) as? NSArray {
+                            var array:Array<String> = []
+                            for el in nsarray {
+                                if let typedElement = el as? String {
+                                    array.append(typedElement)
+                                }
+                            }
+                            obj.setValue(array, forKey: key!)
+                        }
+                        break
+                        
+                        
+                    case is Array<Int>:   //arr int
+                        if let nsarray = dic?.objectForKey(key!) as? NSArray {
+                            var array:Array<Int> = []
+                            for el in nsarray {
+                                if let typedElement = el as? Int {
+                                    array.append(typedElement)
+                                }
+                            }
+                            obj.setValue(array, forKey: key!)
+                        }
+                        break
+                        
+                    default:     //unknow
+                        let otherType = Mirror(reflecting: type).subjectType
+                        
+                        switch otherType{
+                        case is Optional<String>.Type,is Optional<NSNumber>.Type,is Optional<NSInteger>.Type,is Optional<Array<String>>.Type,is Optional<Array<Int>>.Type:
+                            obj.setValue(dic?.objectForKey(key!), forKey: key!)
+                            break
+                            
+                        default:
+                            let name:NSString = String(otherType)
+                            let className = getClassName(name) as String
+                            let clz:AnyClass! = NSClassFromString(className)
+                            
+                            if clz != nil{
+                                if let data = dic.objectForKey(key!) as? NSArray{
+                                    let value = clz.jsonToModelList(data)
+                                    obj.setValue(value, forKey: key!)
+                                }
+                                else{
+                                    let value = dic.objectForKey(key!)
+                                    obj.setValue((clz as! D3Model.Type).jsonToModel(value),forKey:key!)
+                                }
                             }
                             else{
-                                let value = dic.objectForKey(key!)
-                                obj.setValue((clz as! D3Model.Type).jsonToModel(value),forKey:key!)
+                                print("unknown property")
                             }
+                            break
                         }
-                        else{
-                            print("unknown property")
-                        }
-                        break
                     }
                 }
             }
-        }
         }
         else{
             return nil
@@ -127,7 +134,7 @@ public class D3Model:NSObject{
         }
         return objs
     }
-
+    
     
     //从一串Optional<*******>找到类名字符串
     private class func getClassName(name:NSString)->NSString!{
