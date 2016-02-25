@@ -32,8 +32,8 @@ You can use CocoaPods to install D3Json adding it to your Podfile:
     platform :ios, '7.0'
     use_frameworks!
     
-    pod 'D3Json’, '~> 2.0.0'
-you need `import D3Json`
+    pod 'D3Model', '~> 2.0.3'
+you need `import D3Model`
 
 
 Note that it needs you to install CocoaPods 36 version, and requires your iOS deploy target >= 8.0:
