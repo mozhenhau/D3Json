@@ -9,4 +9,4 @@ Pod::Spec.new do |spec|
   spec.source_files     = 'D3Model/D3Model.swift'
   spec.requires_arc     = true
   spec.ios.deployment_target = '7.0'
-endå
+end
